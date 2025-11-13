@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Корзина</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <style>
+    
+/* Общая база (оставьте ваш существующий код выше) */
+
+/* Адаптация 1024px */
+@media (max-width: 1024px) {
+  header {
+    padding: 10px 18px;
+    height: auto;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .search {
+    width: 200px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  nav {
+    gap: 18px;
+    padding: 0 12px;
+  }
+}
+/* Адаптация 600px */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .search {
+    width: 160px;
+    font-size: 13px;
+  }
+
+  .logo {
+    font-size: 14px;
+  }
+}
+/* Адаптация 400px */
+@media (max-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 13px;
+  }
+
+  .logo-box {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .search {
+    width: 120px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  nav button {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+}
+
+
+    body {
+       margin: 0;
+
+      background: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+  /* Хедер */
+header {
+    background: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    }
+
+header .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    
+    .logo {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;   
+    }
+
+
+    .logo-box {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(to bottom, #797979, #cccccc);
+      color: #111;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 8px;
+      border-radius: 2px;
+      user-select: none;
+    }
+    /* Навигация */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      justify-content: flex-end;
+      padding-right: 20px;
+      width: 100%;
+    }
+    nav button {
+      background: transparent;
+      border: none;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 6px 12px;
+      transition: color 0.3s, transform 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    nav button:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+    /* Поиск */
+    .search {
+      background: #222;
+      border: none;
+      border-radius: 8px;
+      color: #888;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 6px 14px;
+      width: 235px;
+    }
+    .search::placeholder {
+      color: #555;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-box">LS</div>
+    LUXURYSTYLE
+  </div>
+  <nav>
+    <button type="button" id="lichny" onclick="location.href='личный.html'">Личный кабинет</button>
+    <button id="glavnay" onclick="location.href='главная.html'">Главная</button>
+    <input class="search" type="search" placeholder="Поиск товаров..." aria-label="Поиск товаров" />
+  </nav>
+</header>
+<style>
+  
+/* Адаптация для 1024px */
+@media (max-width: 1024px) {
+  .wrapper {
+    margin: 32px 36px 0;
+    gap: 24px;
+  }
+
+  .cart-left {
+    flex: 1 1 65%;
+  }
+
+  .cart-right {
+    width: 320px;
+    height: auto;
+    margin-top: 60px;
+    margin-right: 24px;
+    padding: 20px;
+  }
+
+  .cart-item {
+    width: 100%;
+    height: 150px;
+    padding: 12px 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .cart-item img {
+    width: 120px;
+    height: 150px;
+  }
+
+  .qty {
+    position: absolute;
+    left: auto;
+    right: 140px;
+    margin-left: 0;
+    top: 18px;
+  }
+
+  .price {
+    min-width: 70px;
+    font-size: 18px;
+  }
+
+  .remove {
+    margin-bottom: 110px;
+    font-size: 26px;
+  }
+
+  .order-btn {
+    width: 200px;
+    height: 44px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+  }
+}
+
+/* Адаптация для 600px */
+@media (max-width: 600px) {
+  .wrapper {
+    margin: 20px 16px 0;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .cart-left {
+    order: 1;
+    width: 100%;
+  }
+
+  .cart-right {
+    order: 2;
+    width: 100%;
+    margin: 0;
+    padding: 18px;
+    margin-top: 0;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    width: 100%;
+    padding: 12px;
+  }
+
+  .cart-item .info {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .cart-item img {
+    width: 100px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+
+  .cart-item .text {
+    margin-top: 0;
+    flex: 1 1 auto;
+  }
+
+  .qty {
+    position: static;
+    margin: 12px 0 0 0;
+    gap: 10px;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .price {
+    text-align: left;
+    margin-top: 8px;
+    min-width: 0;
+    font-size: 18px;
+  }
+
+  .remove {
+    margin-left: 0;
+    margin-bottom: 0;
+    align-self: flex-end;
+    font-size: 26px;
+  }
+
+  .order-btn {
+    width: 100%;
+    margin: 16px 0 0 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* Адаптация для 400px */
+@media (max-width: 400px) {
+  .wrapper {
+    margin: 12px 12px 0;
+    gap: 12px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .cart-right {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .cart-item {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .cart-item img {
+    width: 88px;
+    height: 110px;
+  }
+
+  .cart-item .text h3 {
+    font-size: 16px;
+  }
+
+  .cart-item .text small {
+    font-size: 13px;
+    margin-right: 0;
+  }
+
+  .qty button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .qty span {
+    font-size: 13px;
+  }
+
+  .price {
+    font-size: 16px;
+    min-width: 60px;
+  }
+
+  .remove {
+    display: inline-block;
+    font-size: 24px;
+  }
+
+  .order-btn {
+    width: 100%;
+    height: 44px;
+    font-size: 18px;
+    margin-top: 12px;
+  }
+}
+
+
+  .wrapper {
+
+    margin: 40px 50px 0;
+    display: flex;
+    gap: 30px;
+  }
+
+  /* Левая колонка с товарами */
+  .cart-left {
+    flex-grow: 1;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 30px;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    text-align: left;
+  }
+
+  .subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    color: #CCCCCC;
+    margin: 0 0 25px 0;
+    text-align: left;
+  }
+
+  /* Товар */
+  .cart-item {
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    width: 1000px;
+    height: 170px;
+    border: 1px solid #333333;
+  }
+
+  .cart-item .info {
+    display: flex;
+    gap: 15px;
+
+  }
+
+  .cart-item img {
+    width: 130px;
+    height: 170px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .cart-item .text {
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+
+  .cart-item .text h3 {
+    margin: 0 0 6px 0;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    text-align: left;
+  }
+
+  .cart-item .text small {
+    display: block;
+ 
+    color: #999999;
+    margin-right: 30px;
+    text-align: left;
+  }
+
+  /* Управление количеством и цена */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    left: 0;
+    margin-left: 225px;
+  }
+
+  .qty button {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    border: none;
+    background: #2e2e2e;
+    color: #fffefe;
+    font-weight: 350;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #575757;
+  }
+
+  .qty button:hover {
+    background: #a5a5a5;
+    color: #fff;
+  }
+
+  .qty span {
+    min-width: 18px;
+    color: #ccc;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .price {
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+    white-space: nowrap;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  .remove {
+    color: #444;
+    font-weight: 300;
+    font-size: 30px;
+    cursor: pointer;
+    user-select: none;
+    margin-left: 12px;
+    flex-shrink: 0;
+    transition: color 0.3s;
+    margin-bottom: 145px;
+  }
+
+  .remove:hover {
+    color: #888;
+  }
+
+  /* Правая колонка заказа */
+  .cart-right {
+    width: 389px;
+    height: 497px;
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 15px;
+    line-height: 1;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 100px;
+    margin-right: 40px;
+    border: 1px solid #333333;
+  }
+
+  .cart-right .row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #888888;
+    padding-bottom: 4px;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .cart-right .row:last-child {
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    border: none;
+  }
+
+  .order-btn {
+    margin-top: 90px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 0;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+    background:#181818;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(5, 5, 5, 0.8);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    width: 213px;
+    height: 47px;
+    margin-left: 85px;
+    margin-right: 85px;
+    border: 1px solid #333333;
+  }
+
+  .order-btn:hover {
+    background: #5a5a5a;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <section class="cart-left">
+    <h1>Корзина</h1>
+    <p class="subtitle">Проверьте выбранные товары перед оформлением заказа</p>
+    
+    <article class="cart-item" data-price="4500">
+      <div class="info">
+        <img src="https://avatars.mds.yandex.net/i?id=c4564e2d19453713ac7dbfb2201ecd9b770a32d3-12528575-images-thumbs&n=13" alt="Элегантное платье" />
+        <div class="text">
+          <h3>Элегантное платье</h3>
+          <small>Размер: M &ensp; Цвет: Белый</small>
+          
+        </div>
+      </div>
+      <div class="controls">
+        <div class="qty">
+          <button class="minus" aria-label="Уменьшить">−</button>
+          <span class="count">1</span>
+          <button class="plus" aria-label="Увеличить">+</button>
+        </div>
+        <div class="price">4 500 ₽</div>
+        <div class="remove" title="Удалить товар">×</div>
+      </div>
+    </article>
+
+    <article class="cart-item" data-price="2800">
+      <div class="info">
+        <img src="https://basket-23.wbbasket.ru/vol4007/part400770/400770429/images/big/1.webp" alt="Классическая рубашка" />
+        <div class="text">
+          <h3>Классическая рубашка</h3>
+          <small>Размер: L &ensp; Цвет: Белый</small>
+          
+        </div>
+      </div>
+      <div class="controls">
+        <div class="qty">
+          <button class="minus" aria-label="Уменьшить">−</button>
+          <span class="count">2</span>
+          <button class="plus" aria-label="Увеличить">+</button>
+        </div>
+        <div class="price">5 600 ₽</div>
+        <div class="remove" title="Удалить товар">×</div>
+      </div>
+    </article>
+
+    <article class="cart-item" data-price="3200">
+      <div class="info">
+        <img src="https://i.pinimg.com/736x/a1/06/db/a106dbf1ebcd3f163236ea124f6726f0.jpg" alt="Джинсы премиум" />
+        <div class="text">
+          <h3>Джинсы премиум</h3>
+          <small>Размер: M &ensp; Цвет: Синий</small>
+          
+        </div>
+      </div>
+      <div class="controls">
+        <div class="qty">
+          <button class="minus" aria-label="Уменьшить">−</button>
+          <span class="count">1</span>
+          <button class="plus" aria-label="Увеличить">+</button>
+        </div>
+        <div class="price">3 200 ₽</div>
+        <div class="remove" title="Удалить товар">×</div>
+      </div>
+    </article>
+  </section>
+
+  <section class="cart-right">
+    <div class="row">
+      <div>Товаров:</div>
+      <div id="total-count">4</div>
+    </div>
+    <div class="row">
+      <div>Оплата:</div>
+      <div>картой</div>
+    </div>
+    <div class="row">
+      <div>Доставка:</div>
+      <div>на пункт выдачи</div>
+    </div>
+    <div class="row">
+      <div>Итого:</div>
+      <div id="total-price">13 300 ₽</div>
+    </div>
+    <button class="order-btn" type="button">Заказать</button>
+  </section>
+</div>
+
+<script>
+  const cartItems = document.querySelectorAll('.cart-item');
+  const totalCountElem = document.getElementById('total-count');
+  const totalPriceElem = document.getElementById('total-price');
+
+  function formatPrice(price) {
+    return price.toLocaleString('ru-RU') + ' ₽';
+  }
+
+  function updateTotals() {
+    let totalCount = 0;
+    let totalPrice = 0;
+
+    cartItems.forEach(item => {
+      const price = +item.dataset.price;
+      const count = +item.querySelector('.count').textContent;
+      totalCount += count;
+      totalPrice += price * count;
+      // обновляем цену каждого товара
+      item.querySelector('.price').textContent = formatPrice(price * count);
+    });
+
+    totalCountElem.textContent = totalCount;
+    totalPriceElem.textContent = formatPrice(totalPrice);
+  }
+
+  cartItems.forEach(item => {
+    const btnPlus = item.querySelector('.plus');
+    const btnMinus = item.querySelector('.minus');
+    const spanCount = item.querySelector('.count');
+    const btnRemove = item.querySelector('.remove');
+
+    btnPlus.addEventListener('click', () => {
+      let count = +spanCount.textContent;
+      spanCount.textContent = count + 1;
+      updateTotals();
+    });
+
+    btnMinus.addEventListener('click', () => {
+      let count = +spanCount.textContent;
+      if (count > 1) {
+        spanCount.textContent = count - 1;
+        updateTotals();
+      }
+    });
+
+    btnRemove.addEventListener('click', () => {
+      item.remove();
+      updateTotals();
+    });
+  });
+
+  updateTotals();
+
+  // Анимация кнопки "Заказать"
+  const orderBtn = document.querySelector('.order-btn');
+  orderBtn.addEventListener('mouseenter', () => {
+    orderBtn.style.transition = 'box-shadow 0.3s ease, background-color 0.3s ease';
+  });
+</script>
+</body>
+</html>
