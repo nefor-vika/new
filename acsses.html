@@ -1,0 +1,639 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Аксессуары</title>
+
+<!-- Подключение шрифта Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* Общие стили (должны сочетаться с вашим основным стилем) */
+body { font-family: 'Inter', sans-serif; color:#fff; background:#0f0f0f; }
+
+/* Сетка карточек */
+.products-grid {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 -90px;
+  padding: 50px 0;
+}
+
+/* Карточка товара */
+.product-card {
+  width:268px;
+  height: 466px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.18));
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #333333;
+  box-shadow:0 6px 18px rgba(0,0,0,0.6);
+  cursor:pointer;
+  transition: transform .18s, box-shadow .18s;
+  flex: 0 0 268px;
+  margin: 0 0px 40px;
+  
+}
+.product-card:hover { transform: translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.7); }
+
+.product-card img {
+  width:100%;
+  height:350px;
+  object-fit:cover;
+  display:block;
+  background:#222;
+}
+
+/* Низ карточки (инфо) */
+.product-info {
+  display:flex;
+  justify-content:space-between;
+  align-items: center left;
+
+  padding: 18px; 
+  min-height: 80px;
+  background:#191919;
+  display: flex;
+  flex-direction: column; /* заголовок над ценой */
+  color: #fff;
+  text-align: left;
+}
+.product-info strong {
+  display:block;
+  font-weight:600;
+  font-size:18px;
+  color:#fff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.product-info span.price {
+  font-weight:600;
+  font-size:20px;
+  color:#9b9b9b;
+  text-align: left;
+}
+
+/* Иконка корзины */
+.product-info .cart-icon {
+  
+  width:40px;
+  height:40px;
+  display:flex;
+  align-items:center right;
+  margin-left: 210px;
+  margin-bottom: 50px;
+}
+
+
+/* Модальное окно (обновлённые классы, схожие с вашим примером) */
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.8);
+  justify-content:center;
+  align-items:center;
+  z-index:10000;
+}
+.modal.open { display:flex; }
+
+.modal-content {
+  background:#1A1A1A;
+  border-radius:12px;
+  width:606px;
+  max-width:95%;
+  height:725px;
+  padding:20px;
+  color:#fff;
+  overflow-y:auto;
+  position:relative;
+  text-align:center;
+  border:0.5px solid #555;
+}
+
+.modal-content .close-btn {
+  position:absolute;
+  right:16px;
+  top:12px;
+  font-size:28px;
+  cursor:pointer;
+  color:#ccc;
+}
+
+.modal-content img {
+  width:536px;
+  max-width:100%;
+  height:441px;
+  border-radius:8px;
+  margin:0 auto 15px;
+  object-fit:cover;
+}
+.modal-content h2 {
+  margin:10px 0 6px;
+  font-size:30px;
+}
+.modal-content p.desc {
+  font-size:16px;
+  color:#ccc;
+  margin:0 30px 20px;
+}
+
+/* Нижняя панель внутри модалки */
+.modal-content .price {
+  font-weight:600;
+  font-size:19px;
+  color:#fff;
+  position:absolute;
+  bottom:30px;
+  right:90px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.modal-content .sizes {
+  position:absolute;
+  bottom:30px;
+  left:30px;
+  font-size:16px;
+  color:#CCCCCC;
+}
+.modal-content .cart-icon1 {
+  position:absolute;
+  bottom:29px;
+  right:30px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:25px;
+  cursor:pointer;
+}
+body {
+      margin: 0;
+      background: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+
+    /* Хедер */
+    header {
+      background: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+    }
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+  }
+    
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .logo-box {
+      width: 32px;
+      height: 32px;
+      background: #ddd;
+      color: #111;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 8px;
+      border-radius: 2px;
+      user-select: none;
+      background: linear-gradient(to bottom, #797979, #cccccc);
+    }
+
+    /* Навигация */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      justify-content: flex-end;
+      padding-right: 20px;
+      width: 100%;
+    }
+
+    nav button {
+      background: transparent;
+      border: none;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 6px 12px;
+      transition: color 0.3s, transform 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    nav button:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    /* Поиск */
+    .search {
+      background: #222;
+      border: none;
+      border-radius: 8px;
+      color: #888;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 6px 14px;
+      width: 208px;
+    }
+    .search::placeholder {
+      color: #555;
+    }
+
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+}
+    .hero{
+        text-align:center;
+        margin-top:24px;
+    }
+    .title{
+        font-size:30px;
+        font-weight:700;
+        color:#fff;
+        margin-bottom:8px;
+    }
+    .subtitle{
+        max-width:760px;
+        margin:0 auto;
+        color:var(--muted);
+        line-height:1.6;
+        color:#CCCCCC;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+@media (max-width: 400px) {
+  .products-grid {
+    gap: 12px;
+    margin: 0 -20px;
+    padding: 20px 0;
+  }
+  .product-card {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .product-card img {
+    height: auto;
+  }
+  .product-info {
+    padding: 12px;
+  }
+  .product-info strong {
+    font-size: 16px;
+  }
+  .product-info span.price {
+    font-size: 18px;
+  }
+  .modal-content {
+    width: 90%;
+    height: auto;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+  }
+  .modal-content h2 {
+    font-size: 24px;
+  }
+  .modal-content p.desc {
+    font-size: 14px;
+    margin: 0 10px 15px;
+  }
+  .modal-content .price {
+    font-size: 16px;
+    bottom: 20px;
+    right: 10px;
+  }
+  .modal-content .sizes {
+    bottom: 20px;
+    left: 10px;
+  }
+  .modal-content .cart-icon1 {
+    bottom: 20px;
+    right: 10px;
+    font-size: 20px;
+  }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav button {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .search {
+    width: 100%;
+    font-size: 12px;
+  }
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .products-grid {
+    gap: 16px;
+    margin: 0 -30px;
+  }
+  .product-card {
+    width: 45%;
+  }
+  .product-card img {
+    height: 250px;
+  }
+  .product-info {
+    padding: 12px;
+  }
+  .product-info strong {
+    font-size: 16px;
+  }
+  .product-info span.price {
+    font-size: 18px;
+  }
+  .modal-content {
+    width: 90%;
+    height: auto;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+  }
+  .modal-content h2 {
+    font-size: 24px;
+  }
+  .modal-content p.desc {
+    font-size: 14px;
+    margin: 0 10px 15px;
+  }
+  .modal-content .price {
+    font-size: 16px;
+    bottom: 20px;
+    right: 10px;
+  }
+  .modal-content .sizes {
+    bottom: 20px;
+    left: 10px;
+  }
+  .modal-content .cart-icon1 {
+    bottom: 20px;
+    right: 10px;
+    font-size: 20px;
+  }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav button {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .search {
+    width: 100%;
+    font-size: 12px;
+  }
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+/* Для устройств до 1024px */
+@media (max-width: 1024px) {
+  .products-grid {
+    gap: 20px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .product-card {
+    width: 45%;
+    height: auto;
+  }
+  .product-card img {
+    height: auto;
+  }
+  .product-info {
+    padding: 12px;
+  }
+  /* Можно оставить стили для модальных окон, как есть или немного уменьшить размеры */
+  .modal-content {
+    width: 80%;
+    height: auto;
+  }
+  /* Заголовки и текст внутри модальных окон */
+  .modal-content h2 {
+    font-size: 24px;
+  }
+  .modal-content p.desc {
+    font-size: 14px;
+  }
+  /* Кнопки и иконки */
+  .modal-content .price,
+  .modal-content .sizes,
+  .modal-content .cart-icon1 {
+    font-size: 16px;
+  }
+  /* Хедер и навигация */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav button {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .search {
+    width: 100%;
+    font-size: 12px;
+  }
+  /* Контейнеры */
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+</style>
+
+<header>
+    <div class="logo">
+      <div class="logo-box">LS</div>
+      <div class="brand-name">LUXURYSTYLE</div>
+    </div>
+
+    <nav>
+      <button type="button" id="cart-btn" onclick="location.href='корзина.html'">Корзина</button>
+      <button type="button" id="profile-btn" id="lichny" onclick="location.href='личный.html'">Личный кабинет</button>
+      <button type="button" id="glavnay" onclick="location.href='главная.html'">Главная</button>
+      <input class="search" type="text" placeholder="Поиск товаров..." />
+    </nav>
+  </header>
+<main class="container">
+    <section class="hero">
+      <h1 class="title">Аксессуары</h1>
+      <p class="subtitle">Откройте для себя последние тренды моды. Эксклюзивные модели высочайшего качества от ведущих дизайнеров</p>
+    </section>
+<!-- Карточки -->
+<div class="products-grid">
+  <!-- Карточка 1 -->
+  <div class="product-card" data-modal="modal-1" role="button" tabindex="0">
+    <img src="https://avatars.mds.yandex.net/i?id=3bcc03cf6375ab5339e08841b9dcbb11_l-6994724-images-thumbs&ref=rim&n=13&w=1125&h=1500" alt="Свитшот на молнии">
+    <div class="product-info">
+      <div>
+        <strong>Цепь</strong>
+        <span class="price">1499 ₽</span>
+      </div>
+      <div class="cart-icon" data-add="Свитшот на молнии" title="Добавить в корзину">🛒</div>
+    </div>
+  </div>
+
+  <!-- Карточка 2 -->
+  <div class="product-card" data-modal="modal-2" role="button" tabindex="0">
+    <img src="https://cdn1.ozone.ru/s3/multimedia-3/6697908615.jpg" alt="Джинсы">
+    <div class="product-info">
+      <div>
+        <strong>Крабик для волос</strong>
+        <span class="price">299 ₽</span>
+      </div>
+      <div class="cart-icon" data-add="Джинсы" title="Добавить в корзину">🛒</div>
+    </div>
+  </div>
+
+  <!-- Карточка 3 -->
+  <div class="product-card" data-modal="modal-3" role="button" tabindex="0">
+    <img src="https://avatars.mds.yandex.net/i?id=99bc4d90300e13dc5cf0efd7fbac4d33_l-4809521-images-thumbs&n=13" alt="Хлопковая рубашка">
+    <div class="product-info">
+      <div>
+        <strong>Серьги</strong>
+        <span class="price">1299 ₽</span>
+      </div>
+      <div class="cart-icon" data-add="Хлопковая рубашка" title="Добавить в корзину">🛒</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Модалки -->
+<div id="modal-1" class="modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true" aria-label="Свитшот на молнии">
+    <span class="close-btn" data-close>&times;</span>
+    <img src="https://avatars.mds.yandex.net/i?id=3bcc03cf6375ab5339e08841b9dcbb11_l-6994724-images-thumbs&ref=rim&n=13&w=1125&h=1500" alt="Свитшот на молнии">
+    <h2>Цепь</h2>
+    <p class="desc">Комфортное и стильное украшение для повседневной носки. Материал: золото</p>
+    <span class="price">Цена: 1499 ₽</span>
+    <div class="sizes">Размеры: <span>S</span> <span>M</span> <span>L</span></div>
+    <div class="cart-icon1" data-add="Свитшот на молнии">🛒</div>
+  </div>
+</div>
+
+<div id="modal-2" class="modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true" aria-label="Джинсы">
+    <span class="close-btn" data-close>&times;</span>
+    <img src="https://cdn1.ozone.ru/s3/multimedia-3/6697908615.jpg" alt="Джинсы">
+    <h2>Крабик для волос</h2>
+    <p class="desc">Лёгкий стильный крабик для волос на каждый день. Хорошо держит волосы, подходит под любой образ.</p>
+    <span class="price">Цена: 299 ₽</span>
+    
+    <div class="cart-icon1" data-add="Джинсы">🛒</div>
+  </div>
+</div>
+
+<div id="modal-3" class="modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true" aria-label="Хлопковая рубашка">
+    <span class="close-btn" data-close>&times;</span>
+    <img src="https://avatars.mds.yandex.net/i?id=99bc4d90300e13dc5cf0efd7fbac4d33_l-4809521-images-thumbs&n=13" alt="Хлопковая рубашка">
+    <h2>Серьги</h2>
+    <p class="desc">Стильные серьги из золота. Подходят как и под вечерние образы, так и на каждый день.</p>
+    <span class="price">Цена: 1299 ₽</span>
+    <div class="cart-icon1" data-add="Хлопковая рубашка">🛒</div>
+  </div>
+</div>
+
+<script>
+/* Открытие модалки по клику на карточку */
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    // Если кликнули по иконке корзины внутри карточки — предотвратить открытие модалки
+    if (e.target.closest('.cart-icon')) return;
+    const id = card.getAttribute('data-modal');
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Открытие по Enter/Space для доступности
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      card.click();
+    }
+  });
+});
+
+/* Закрытие модалок */
+document.querySelectorAll('.modal').forEach(modal => {
+  // закрыть по клику на фон
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal(modal);
+  });
+  // кнопка закрыть
+  modal.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => closeModal(modal));
+  });
+});
+
+function closeModal(modal) {
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+
+
+/* Закрытие модалки по Esc */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal.open').forEach(m => closeModal(m));
+  }
+});
+</script>
+</main>
+</head>
+</html>

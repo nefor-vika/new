@@ -1,0 +1,1879 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LuxuryStyle</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+<style>
+  
+/* Адаптивные правки */
+
+@media (max-width: 1024px) {
+  .categories {
+    gap: 80px;
+  }
+  .card {
+    width: 300px;
+    height: 320px;
+  }
+  .banner {
+    height: 500px;
+  }
+  .banner-text {
+    font-size: 28px;
+  }
+  .search {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+  }
+  nav {
+    justify-content: center;
+    padding-right: 0;
+    gap: 16px;
+    margin-top: 12px;
+    width: 100%;
+  }
+  .categories {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  .card {
+    width: 90%;
+    height: auto;
+  }
+  .card img {
+    height: auto;
+  }
+  .banner {
+    height: 300px;
+  }
+  .banner-text {
+    font-size: 22px;
+    padding: 0 10px;
+  }
+  .search {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav button {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  header {
+    padding: 8px 12px;
+  }
+  .banner-text {
+    font-size: 18px;
+  }
+  main h2 {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+  main {
+    padding: 24px 12px 40px;
+  }
+  .card-content p {
+    font-size: 16px;
+    margin-left: 0;
+  }
+  .card-content button {
+    width: 100px;
+    height: 32px;
+    font-size: 12px;
+  }
+}
+
+  
+  /* Общие стили */
+
+  body {
+    margin: 0;
+    background: #111;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    text-align: center;
+  
+}
+  /* Хедер */
+  header {
+    background: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+}
+  header .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .logo-box {
+    width: 32px;
+    height: 32px;
+    background: #ddd;
+    color: #111;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    border-radius: 2px;
+    user-select: none;
+    background: linear-gradient(to bottom, #797979, #cccccc);
+  }
+
+  /* Навигация */
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    justify-content: flex-end;
+    padding-right: 20px;
+    width: 100%;
+    }
+
+  nav button {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 6px 12px;
+    transition: color 0.3s, transform 0.3s;
+    font-family: 'Inter', sans-serif;
+    
+  }
+  nav button:hover {
+    color: #fff;
+    transform: scale(1.1);
+  }
+
+  /* Поиск */
+  .search {
+    background: #222;
+    border: none;
+    border-radius: 8px;
+    color: #888;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    padding: 6px 14px;
+    width: 300px;
+  }
+  .search::placeholder {
+    color: #555;
+  }
+  
+
+  /* Баннер */
+  .banner {
+    background: url('https://i.pinimg.com/originals/41/05/6c/41056cae02ed1d6fefc0e776f42d97e8.jpg') no-repeat center center;
+    background-size: cover;
+    height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .banner-text {
+    font-size: 40px;
+    color: rgb(236, 236, 236);
+    font-weight: 500;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    user-select: none;
+    font-weight: bold;
+  }
+
+  /* Контент */
+  main {
+    background: #111;
+    padding: 48px 24px 60px;
+    text-align: center;
+  }
+  main h2 {
+    margin-bottom: 48px;
+    font-weight: 600;
+    font-size: 30px;
+  }
+
+  /* Категории */
+  .categories {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+  }
+  .card {
+  position: relative;
+  width: 378px; /* ширина по вашему усмотрению */
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+
+  .card img {
+   width: 100%;       /* ширина 100% карточки */
+  height: 100%;      /* высота равна высоте карточки */
+  object-fit: cover; /* обрезает image по нужным пропорциям, сохраняя заполнение */
+  display: block;    /* убирает лишние пробелы под изображением */
+  }
+
+  .card-content {
+  position: absolute;
+  bottom: 16px;
+  left: 14px;
+  color: white;
+  z-index: 2;
+  }
+  
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* чтобы все было слева */
+  gap: 10px;
+  left: 14px;
+  bottom: 16px;
+  position: absolute;
+  color: white;
+}
+
+  .card::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(32, 32, 32, 0.8), transparent);
+  z-index: 1;
+}
+  .card-content p {
+    margin: 0 0 20px;
+    font-weight: 600;
+    font-size: 20px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  .card-content button {
+    margin: 0 0 20px;
+    background: #1A1A1A;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Inter',  sans-serif;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+    width: 122px;
+    height: 37px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(45deg, #1A1A1A, #414141);
+  }
+  .card-content button:hover {
+    background-color: #666666;
+    background: linear-gradient(45deg, #3f3f3f, #414141);
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-box">LS</div>
+    LUXURYSTYLE
+  </div>
+  <nav>
+    <button id="cart-btn" onclick="location.href='корзина.html'">Корзина</button>
+    <button id="profile-btn" id="lichny" onclick="location.href='личный.html'">Личный кабинет</button>
+    <button id="about-btn">О нас</button>
+  </nav>
+  <input type="search" class="search" placeholder="Поиск товаров..." aria-label="Поиск товаров" id="search-input"/>
+  </div>
+</header>
+
+
+<!-- Выпадающее окно поиска -->
+<div id="search-dropdown" class="search-dropdown hidden">
+  <h2>Поиск товаров</h2>
+  <p>Найдите идеальную одежду и аксессуары для вашего стиля</p>
+  <div class="search-box">
+    <input type="text" placeholder="Введите название товара..." aria-label="Введите название товара" />
+    <button aria-label="Поиск">
+      
+    </button>
+  </div>
+  <h3>Начните поиск</h3>
+  <p class="small-text">Введите название товара в поле поиска выше</p>
+</div>
+
+
+<style>
+
+@media (max-width: 1024px) {
+  .search-dropdown {
+    width: 90%;
+    height: auto;
+    max-height: 80vh;
+    padding: 20px 30px 40px;
+    top: 70px;
+  }
+
+  .search-dropdown .search-box {
+    max-width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .search-dropdown .search-box input {
+    font-size: 14px;
+    padding: 8px 35px 8px 12px;
+  }
+
+  .search-dropdown h2 {
+    font-size: 18px;
+  }
+
+  .search-dropdown h3 {
+    font-size: 14px;
+  }
+
+  .search-dropdown p, 
+  .search-dropdown p.small-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  .search-dropdown {
+    width: 95vw;
+    top: 60px;
+    padding: 15px 20px 30px;
+    border-radius: 8px;
+  }
+
+  .search-dropdown .search-box input {
+    font-size: 14px;
+    padding: 8px 35px 8px 10px;
+  }
+
+  .search-dropdown h2 {
+    font-size: 16px;
+  }
+
+  .search-dropdown h3 {
+    font-size: 13px;
+  }
+
+  .search-dropdown p,
+  .search-dropdown p.small-text {
+    font-size: 12px;
+  }
+
+  .search-dropdown .search-box button {
+    right: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .search-dropdown {
+    top: 50px;
+    padding: 10px 15px 25px;
+  }
+
+  .search-dropdown .search-box input {
+    padding: 6px 30px 6px 8px;
+    font-size: 13px;
+  }
+
+  .search-dropdown h2 {
+    font-size: 14px;
+  }
+
+  .search-dropdown h3 {
+    font-size: 12px;
+  }
+
+  .search-dropdown p,
+  .search-dropdown p.small-text {
+    font-size: 11px;
+  }
+}
+
+.search-dropdown {
+  position: fixed;
+  top: 60px; /* под шапкой, подкорректируйте если необходимо */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  max-width: 95vw;
+  background: #121212;
+  border-radius: 12px;
+  padding: 30px 40px 50px;
+  color: #ccc;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  z-index: 20000;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+
+}
+
+#search-dropdown {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.search-dropdown h2 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.search-dropdown p {
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: #CCCCCC;
+}
+
+.search-dropdown .search-box {
+  position: relative;
+  margin: 0 auto 35px;
+  width: 100%;
+  max-width: 540px;
+}
+
+.search-dropdown .search-box input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #222;
+  color: #999999;
+  font-family: 'Inter', sans-serif;
+}
+
+.search-dropdown .search-box input::placeholder {
+  color: #555;
+}
+
+.search-dropdown .search-box button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.search-dropdown .search-box button:hover {
+  color: #fff;
+}
+
+.search-dropdown h3 {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #ddd;
+}
+
+.search-dropdown p.small-text {
+  font-size: 14px;
+  color: #CCCCCC;
+  margin: 0;
+}
+
+
+.search-dropdown.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+</style>
+
+
+<script>
+
+const searchInput = document.getElementById('search-input');
+const searchDropdown = document.getElementById('search-dropdown');
+
+// Начальные стили для плавности (если нет в CSS)
+searchDropdown.style.opacity = 0;
+searchDropdown.style.pointerEvents = 'none';
+searchDropdown.style.transition = 'opacity 0.3s ease';
+
+function showDropdown() {
+  searchDropdown.classList.remove('hidden');
+  // Небольшая задержка для срабатывания transition
+  requestAnimationFrame(() => {
+    searchDropdown.style.opacity = 1;
+    searchDropdown.style.pointerEvents = 'auto';
+  });
+}
+
+function hideDropdown() {
+  searchDropdown.style.opacity = 0;
+  searchDropdown.style.pointerEvents = 'none';
+  // После завершения анимации скрываем элемент, чтобы он не занимал место и не ловил события
+  searchDropdown.addEventListener('transitionend', () => {
+    if (searchDropdown.style.opacity === '0') {
+      searchDropdown.classList.add('hidden');
+    }
+  }, { once: true });
+}
+
+searchInput.addEventListener('focus', () => {
+  showDropdown();
+});
+
+searchInput.addEventListener('input', () => {
+  if (searchInput.value.trim()) {
+    showDropdown();
+  } else {
+    hideDropdown();
+  }
+});
+
+searchInput.addEventListener('blur', () => {
+  setTimeout(() => {
+    if (!document.activeElement.closest('#search-dropdown')) {
+      hideDropdown();
+    }
+  }, 150);
+});
+
+document.addEventListener('click', (e) => {
+  if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+    hideDropdown();
+  }
+});
+
+</script>
+
+
+
+
+
+<div class="banner">
+  <div class="banner-text">Время выглядеть на все 100%</div>
+</div>
+
+<main>
+  <h2>Категории</h2>
+  <div class="categories">
+    <div class="card">
+      <img src="https://i.pinimg.com/736x/94/b1/ff/94b1ff9ea7e5511ec4357a70eb5e4038.jpg" alt="Женская одежда" />
+      <div class="card-content">
+        <p>Женская одежда</p>
+        <button id="smotret" onclick="location.href='женская.html'">Смотреть все</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://i.pinimg.com/736x/8c/2f/0b/8c2f0b7dd7a409a60a3afa2d87a3eac9.jpg" alt="Мужская одежда" />
+      <div class="card-content">
+        <p>Мужская одежда</p>
+        <button id="smotret2" onclick="location.href='мужская.html'">Смотреть все</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://i.pinimg.com/736x/e0/a4/ed/e0a4edc424cc1dcfd272ec2947898280.jpg" alt="Аксессуары" />
+      <div class="card-content">
+        <p>Аксессуары</p>
+        <button id="smotret3" onclick="location.href='acsses.html'">Смотреть все</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Плавная анимация кнопок корзина, личный кабинет, о нас (уже через :hover)
+  // Для примера добавим события на кнопки, если нужно
+
+  // Кнопки здесь настроены через CSS :hover - дополнительный JS не требуется для анимации на наведении
+</script>
+
+
+
+<style>
+
+/* Адаптивные правки для секции продуктов и отзывов */
+
+@media (max-width: 1024px) {
+  .products {
+    gap: 60px;
+  }
+  .product-card {
+    width: 220px;
+    height: 380px;
+  }
+  .product-card img {
+    height: 280px;
+  }
+  .reviews {
+    gap: 60px;
+  }
+  .review-card {
+    width: 320px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  h2 {
+    margin-top: 60px;
+    font-size: 26px;
+  }
+  p.subtitle {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+  .products {
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+  }
+  .product-card {
+    width: 90%;
+    max-width: 280px;
+    height: auto;
+  }
+  .product-card img {
+    height: auto;
+  }
+  .product-info {
+    margin-left: 0;
+    padding: 12px 12px;
+  }
+  .reviews {
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+  }
+  .review-card {
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 22px;
+    margin-top: 40px;
+  }
+  p.subtitle {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .product-card {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  .product-card img {
+    height: auto;
+  }
+  .cart-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    bottom: 8px;
+    right: 8px;
+  }
+  .product-info strong {
+    font-size: 14px;
+  }
+  .product-info span {
+    font-size: 12px;
+  }
+  .review-card {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    font-size: 12px;
+  }
+  .stars {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .review-text {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .review-user {
+    font-size: 12px;
+    gap: 8px;
+  }
+  .review-user img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+  h2 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    margin-top: 100px;
+    font-size: 30px;
+  }
+  p.subtitle {
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: #bbb;
+  }
+  .products {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    margin-bottom: 64px;
+    padding: 0 20px;
+  }
+  .product-card {
+    position: relative;
+    background: #1A1A1A;
+    border-radius: 12px;
+    width: 268px;
+    height: 449px;
+    overflow: hidden;
+    text-align: left;
+    border: 0.5px solid #252525; /* Цвет и толщина по желанию */
+    border-radius: 12px;
+    transition: transform 0.3s ease; /* плавный переход */
+    cursor: pointer; /* Добавлено, чтобы показать кликабельность */
+  }
+
+  .product-card:hover {
+    transform: scale(1.05); /* увеличение на 5% при наведении */
+    z-index: 10; /* чтобы карточка была поверх соседних */
+    
+  }
+    
+  .cart-icon {
+  position: absolute;
+  bottom: 12px; /* Отступ от низа */
+  right: 10px;  /* Отступ от правого края */
+  font-size: 20px; /* Размер иконки, можно менять */
+  cursor: pointer;
+  color: #fff; /* Цвет иконки, по необходимости */
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  .product-card img {
+    width: 100%;
+    height: 350px;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+  }
+  .product-info {
+    padding: 12px 16px;
+    margin-top: 12px;
+    margin-left: 10px;
+  }
+  .product-info strong {
+    display: block;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    
+  }
+  .product-info span {
+    font-size: 14px;
+    color: #888;
+    
+  }
+  
+  .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+  }
+  .reviews-section {
+    margin: 0 auto 48px;
+    padding: 0 20px;
+  }
+
+  .reviews-section h2 {
+    margin-bottom: 15px;
+   
+    
+  }
+  .reviews-section p.subtitle {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+  .reviews {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    flex-wrap: wrap;
+  }
+  .review-card {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 20px;
+    width: 373px;
+    height: 347px;
+    color: #ddd;
+    text-align: left;
+    font-size: 13px;
+    box-sizing: border-box;
+  }
+  .stars {
+    color: #ffcb00;
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  .review-text {
+    margin-bottom: 14px;
+    
+    font-size: 14px;
+    line-height: 1.8;
+    color: #ffffff;
+  }
+  .review-product {
+    font-weight: 600;
+    border-bottom: 0.5px solid #8a8a8a;
+    padding-bottom: 30px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    color: #CCCCCC;
+    font-weight: lighter;
+  }
+  .review-user {
+    display: flex;
+    gap: 12px;
+    color: #bebebe;
+    font-size: 14px;
+    margin-top: 35px;
+  }
+  .review-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+</style>
+
+
+<section>
+  <h2>Новинки</h2>
+  <p class="subtitle">Откройте для себя последние тренды моды. Эксклюзивные модели, которые только что поступили в наш каталог</p>
+
+  <div class="products">
+    <div class="product-card" id="productCard">
+      <img src="https://i.pinimg.com/736x/3f/08/86/3f0886a77767d229b855928a3a595ca7.jpg" alt="Кожаная куртка" />
+      <div class="product-info">
+        <strong>Кожаная куртка</strong>
+        <span>5999 ₽</span>
+         <div class="cart-icon">
+         🛒
+         </div>
+      </div>
+    </div>
+    <!-- Модальное окно -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="closeBtn" class="close-btn">&times;</span>
+    <img src="https://i.pinimg.com/736x/3f/08/86/3f0886a77767d229b855928a3a595ca7.jpg" alt="Кожаная куртка" />
+    <h2>Кожаная куртка</h2>
+    <p>Высококачественная кожаная куртка с современным дизайном. Идеальна для холодной погоды и стильных образов.</p>
+    <span class="price">Цена: 5999 ₽</span>
+    <div class="sizes">
+        Размеры: <span>S</span> <span>M</span> <span>L</span> <span>XL</span>
+      </div>
+      <div class="cart-icon1">🛒</div>
+  </div>
+</div>
+
+<style>
+  
+@media (max-width: 900px) {
+  .modal-content {
+    width: 90%;
+    height: 80vh;
+    padding: 15px;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  .modal-content h2 {
+    font-size: 24px;
+  }
+  .modal-content p {
+    font-size: 14px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 60px; /* сохранение отступа под элементы */
+  }
+  .sizes {
+    font-size: 14px;
+    bottom: 20px;
+    left: 20px;
+  }
+  #modal .price {
+    font-size: 16px;
+    bottom: 20px;
+    right: 70px;
+  }
+  .cart-icon1 {
+    font-size: 22px;
+    bottom: 20px;
+    right: 20px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%;
+    height: 75vh;
+    padding: 12px;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+  }
+  .modal-content h2 {
+    font-size: 20px;
+  }
+  .modal-content p {
+    font-size: 13px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 60px;
+  }
+  .sizes {
+    font-size: 12px;
+    bottom: 15px;
+    left: 15px;
+  }
+  #modal .price {
+    font-size: 14px;
+    bottom: 15px;
+    right: 60px;
+  }
+  .cart-icon1 {
+    font-size: 20px;
+    bottom: 15px;
+    right: 15px;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal-content {
+    width: 98%;
+    height: 70vh;
+    padding: 10px;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .modal-content h2 {
+    font-size: 18px;
+  }
+  .modal-content p {
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 60px;
+  }
+  .sizes {
+    font-size: 11px;
+    bottom: 12px;
+    left: 10px;
+  }
+  #modal .price {
+    font-size: 13px;
+    bottom: 12px;
+    right: 50px;
+  }
+  .cart-icon1 {
+    font-size: 18px;
+    bottom: 12px;
+    right: 10px;
+    gap: 5px;
+  }
+}
+
+/* Стили модального окна */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+  .modal-content {
+    background: #1A1A1A;
+    border-radius: 12px;
+    width: 606px;
+    height: 725px;
+    padding: 20px;
+    color: #fff;
+    overflow-y: auto;
+    position: relative;
+    text-align: center;
+    border: 0.5px solid #555; /* Цвет и толщина по желанию */
+  }
+  .modal-content p {
+    flex-grow: 1;
+    margin-bottom: 60px; /* пространство снизу для элементов */
+  }
+  .sizes {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    font-size: 16px;
+    color: #CCCCCC;
+  }
+  .cart-icon1 {
+    position: absolute;
+    bottom: 29px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+  }
+   #modal .price {
+    font-weight: 600;
+    font-size: 19px;
+    color: #ffffff;
+    position: absolute;
+    bottom: 30px;
+    right: 90px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+  }
+  
+  .modal-content img {
+    width: 536px;
+    height:441px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    object-fit: cover;
+  }
+
+  .modal-content h2 {
+    margin-bottom: 10px;
+    margin-top: 0px;
+    font-size: 30px;
+  }
+  .modal-content p {
+    font-size: 16px;
+    color: #ccc;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+</style>
+<script>
+  const productCard = document.getElementById('productCard');
+  const modal = document.getElementById('modal');
+  const closeBtn = document.getElementById('closeBtn');
+
+  productCard.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
+
+
+
+
+<div class="product-card" data-modal="modal2">
+  <img src="https://ir.ozone.ru/s3/multimedia-1-2/c1000/7784690906.jpg" alt="Свишот на молнии" />
+  <div class="product-info">
+    <strong>Свишот на молнии</strong>
+    <span>3549 ₽</span>
+    <div class="cart-icon">🛒</div>
+  </div>
+</div>
+<!-- Модальное окно для этого продукта -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <img src="https://ir.ozone.ru/s3/multimedia-1-2/c1000/7784690906.jpg" alt="Свишот на молнии" />
+    <h2>Свишот на молнии</h2>
+    <p>Комфортный и стильный свишот на молнии для повседневной носки и активного отдыха.</p>
+    <span class="price">Цена: 3549 ₽</span>
+    <div class="sizes">
+      Размеры: <span>S</span> <span>M</span> <span>L</span> <span>XL</span>
+    </div>
+    <div class="cart-icon1">🛒</div>
+  </div>
+</div>
+
+<style>
+
+@media (max-width: 900px) {
+  .modal-content {
+    width: 90%;
+    height: 80vh;
+    padding: 15px;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  .modal-content h2 {
+    font-size: 24px;
+  }
+  .modal-content p {
+    font-size: 14px;
+    margin: 0 20px 40px 20px;
+  }
+  .sizes {
+    font-size: 14px;
+    bottom: 20px;
+    left: 20px;
+  }
+  .price {
+    font-size: 16px;
+    bottom: 20px;
+    right: 70px;
+  }
+  .cart-icon1 {
+    font-size: 22px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .close-btn {
+    font-size: 24px;
+    top: 8px;
+    right: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%;
+    height: 75vh;
+    padding: 12px;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+  }
+  .modal-content h2 {
+    font-size: 20px;
+  }
+  .modal-content p {
+    font-size: 13px;
+    margin: 0 15px 30px 15px;
+  }
+  .sizes {
+    font-size: 12px;
+    bottom: 15px;
+    left: 15px;
+  }
+  .price {
+    font-size: 14px;
+    bottom: 15px;
+    right: 60px;
+  }
+  .cart-icon1 {
+    font-size: 20px;
+    bottom: 15px;
+    right: 15px;
+    gap: 8px;
+  }
+  .close-btn {
+    font-size: 22px;
+    top: 6px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal-content {
+    width: 98%;
+    height: 70vh;
+    padding: 10px;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .modal-content h2 {
+    font-size: 18px;
+  }
+  .modal-content p {
+    font-size: 12px;
+    margin: 0 10px 25px 10px;
+  }
+  .sizes {
+    font-size: 11px;
+    bottom: 12px;
+    left: 10px;
+  }
+  .price {
+    font-size: 13px;
+    bottom: 12px;
+    right: 50px;
+  }
+  .cart-icon1 {
+    font-size: 18px;
+    bottom: 12px;
+    right: 10px;
+    gap: 6px;
+  }
+  .close-btn {
+    font-size: 20px;
+    top: 5px;
+    right: 8px;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: #1A1A1A;
+  border-radius: 12px;
+  width: 606px;
+  height: 725px;
+  padding: 20px;
+  color: #fff;
+  overflow-y: auto;
+  position: relative;
+  text-align: center;
+  border: 0.5px solid #555; /* Цвет и толщина по желанию */
+}
+
+.modal-content img {
+  width: 536px;
+  height: 441px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.modal-content h2 {
+  margin: 0 0 10px 0;
+  font-size: 30px;
+}
+
+.modal-content p {
+  font-size: 16px;
+  color: #ccc;
+  margin: 0 30px 60px 30px; /* отступ снизу для элементов */
+  text-align: center;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.sizes {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 16px;
+  color: #CCCCCC;
+}
+
+.cart-icon1 {
+  position: absolute;
+  bottom: 29px;
+  right: 30px;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 19px;
+  color: #ffffff;
+  position: absolute;
+  bottom: 30px;
+  right: 90px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 28px;
+  color: #fff;
+}
+</style>
+<script>
+// Открываем модальное окно по клику на карточку
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const modalId = card.getAttribute('data-modal');
+    const modal = document.getElementById(modalId);
+    if(modal) modal.classList.add('active');
+  });
+});
+
+// Закрываем по кнопке
+document.querySelectorAll('.modal .close-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    btn.closest('.modal').classList.remove('active');
+  });
+});
+
+// Закрываем по клику вне контента
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', e => {
+    if(e.target === modal) modal.classList.remove('active');
+  });
+});
+</script>
+
+
+
+    <div class="product-card" id="productBag" >
+      <img src="https://img.joomcdn.net/eaf6b42e81f35fd56fdc721313c9e39146e2f74c_original.jpeg" alt="Сумка" />
+      <div class="product-info">
+        <strong>Сумка кожаная</strong>
+        <span>4599 ₽</span>
+         <div class="cart-icon">
+         🛒
+         </div>
+      </div>
+    </div>
+  </div>
+<!-- Модальное окно -->
+<div id="modalBag" class="modal">
+  <div class="modal-content">
+    <span id="closeBtnBag" class="close-btn">&times;</span>
+    <img src="https://img.joomcdn.net/eaf6b42e81f35fd56fdc721313c9e39146e2f74c_original.jpeg" alt="Сумка кожаная" />
+    <h2>Сумка кожаная</h2>
+    <p>Стильная и удобная кожаная сумка, прекрасно подходит для повседневного использования.</p>
+    <span class="price">Цена: 4599 ₽</span>
+    <div class="sizes">Размеры: <span>S</span> <span>L</span></div>
+    <div class="cart-icon-popup">🛒</div>
+  </div>
+</div>
+
+<style>
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  .close-btn {
+    font-size: 24px;
+    top: 12px;
+    right: 15px;
+  }
+  .price {
+    font-size: 17px;
+    margin-top: 12px;
+  }
+  .sizes {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .cart-icon-popup {
+    font-size: 22px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    padding: 12px;
+  }
+  .modal-content img {
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .close-btn {
+    font-size: 20px;
+    top: 10px;
+    right: 12px;
+  }
+  .price {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .sizes {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+  .cart-icon-popup {
+    font-size: 20px;
+    bottom: 15px;
+    right: 15px;
+    gap: 8px;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.75);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal.active {
+  display: flex;
+}
+.modal-content {
+  background: #1A1A1A;
+  border-radius: 12px;
+  width: 606px;
+  padding: 20px;
+  color: #fff;
+  position: relative;
+  margin-left: 30px;
+  margin-right: 30px;
+  border: 0.5px solid #555; /* Цвет и толщина по желанию */
+
+}
+.modal-content img {
+  width: 536px;
+  height: 441px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+}
+.price {
+  font-weight: 600;
+  font-size: 19px;
+  margin-top: 15px;
+}
+.sizes {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #ccc;
+}
+.cart-icon-popup {
+position: absolute;
+  bottom: 29px;
+  right: 30px;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+.product-card {
+  cursor: pointer;
+}
+</style>
+
+<script>
+const productBag = document.getElementById('productBag');
+const modalBag = document.getElementById('modalBag');
+const closeBtnBag = document.getElementById('closeBtnBag');
+
+productBag.addEventListener('click', () => {
+  modalBag.classList.add('active');
+});
+
+closeBtnBag.addEventListener('click', () => {
+  modalBag.classList.remove('active');
+});
+
+modalBag.addEventListener('click', (e) => {
+  if (e.target === modalBag) {
+    modalBag.classList.remove('active');
+  }
+});
+</script>
+
+</section>
+
+<section class="reviews-section">
+  <h2>Отзывы клиентов</h2>
+  <p class="subtitle">Честные отзывы от наших покупателей</p>
+
+  <div class="reviews">  <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">
+        Отличное качество! Платье село идеально, ткань приятная к телу. Заказывала размер М, подошел точно по размеру. Доставка быстрая, упаковка аккуратная.
+      </div>
+      <div class="review-product">Кожаная куртка: М</div>
+      <div class="review-user">
+        <img src="https://i.pinimg.com/736x/95/d4/0b/95d40b44552d7542482e75eca891d959.jpg" alt="Лана Дель Рей" />
+        <div>
+          <div>Лана Дель Рей</div>
+          <div>14.09.2025</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">
+        Отличное качество! Платье село идеально, ткань приятная к телу. Заказывала размер М, подошел точно по размеру. Доставка быстрая, упаковка аккуратная.
+      </div>
+      <div class="review-product">Футболка: М</div>
+      <div class="review-user">
+        <img src="https://i.pinimg.com/736x/3c/b9/46/3cb94646d4ca490b55607072adf75d6e.jpg" alt="Эми Зим" />
+        <div>
+          <div>Эми Зим</div>
+          <div>28.10.25</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">
+        Отличное качество! Платье село идеально, ткань приятная к телу. Заказывала размер М, подошел точно по размеру. Доставка быстрая, упаковка аккуратная.
+      </div>
+      <div class="review-product">Платье в горох: М</div>
+      <div class="review-user">
+        <img src="https://i.pinimg.com/originals/f7/70/7f/f7707ffc52ecaa5d08db04c6d9e17b19.jpg" alt="Снежана Ополка" />
+        <div>
+          <div>Снежана Ополка</div>
+          <div>19.08.2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+
+/* Адаптивные стили для footer */
+
+@media (max-width: 1024px) {
+  footer {
+    max-width: 100%;
+    padding: 20px;
+    margin-top: 120px;
+    white-space: normal; /* разрешить перенос строк для удобства */
+  }
+  .footer-container {
+    gap: 32px;
+  }
+  .footer-column {
+    flex: 1 1 140px;
+    min-width: 140px;
+  }
+  .footer-map {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .footer-column {
+    flex: none;
+    width: 100%;
+    min-width: auto;
+  }
+  .footer-map {
+    margin: 0 auto;
+    width: 180px;
+    height: 180px;
+  }
+  footer {
+    text-align: center;
+    white-space: normal;
+    font-size: 13px;
+  }
+  .footer-column h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .footer-column ul li,
+  .footer-column strong,
+  .footer-brand {
+    font-size: 11px;
+  }
+  .footer-brand strong {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 15px 10px 20px 10px;
+    margin-top: 80px;
+    font-size: 12px;
+  }
+  .footer-column h3 {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .footer-column ul li,
+  .footer-column strong,
+  .footer-brand {
+    font-size: 10px;
+  }
+  .footer-map {
+    width: 100%;
+    height: 160px;
+  }
+  .footer-bottom {
+    font-size: 11px;
+    margin-top: 20px;
+  }
+}
+
+    footer {
+      padding: 0px 20px 20px 20px;
+      max-width: 1700px;
+      margin: 0 auto;
+      font-weight: 400;
+      font-size: 14px;
+      color: #999;
+      white-space: nowrap; /* Запретить перенос строк */
+      text-align: left;
+     margin-top: 200px;
+    }
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+    .footer-column {
+      flex: 1 1 180px;
+      min-width: 180px;
+    }
+    .footer-column h3 {
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-column ul li {
+      margin-bottom: 12px;
+      font-weight: 400;
+      font-size: 12px;
+      color: #999;
+    }
+    .footer-column strong {
+      font-weight: 700;
+      font-size: 12px;
+      color: #999;
+      display: block;
+      margin-bottom: 16px;
+    }
+    /* Текст под LUXURYSTYLE */
+    .footer-brand {
+      color: #999;
+      font-size: 12px;
+      line-height: 2;
+      max-width: 230px;
+      font-weight: 400;
+    }
+    .footer-brand strong {
+      
+      background: linear-gradient(to left, #7c7c7c, #cccccc); /* от темного справа к светлому слева */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+      font-weight: 700;
+      font-size: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
+      margin-top: 10px;
+    }
+    /* Карта */
+    .footer-map {
+      width: 160px;
+      height: 160px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 6px rgba(255,255,255,0.15);
+    }
+    /* Нижняя строка */
+    .footer-bottom {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+  </style>
+
+
+  <footer id="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <div class="footer-brand">
+          <strong>LUXURYSTYLE</strong>
+          Премиальная одежда для тех,<br>
+          кто ценит качество и стиль.<br>
+          Эксклюзивные коллекции от<br>
+          ведущих дизайнеров мира.
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Каталог</h3>
+        <ul>
+          <li>Женская одежда</li>
+          <li>Мужская одежда</li>
+          <li>Аксессуары</li>
+          <li>Новинки</li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Информация</h3>
+        <ul>
+          <li>О компании</li>
+          <li>Доставка и оплата</li>
+        </ul>
+        
+         <a href="https://goo.gl/maps/8cxJKhNWhbda8aHy6" target="_blank" rel="noopener noreferrer" class="footer-map">
+
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2244.7163411634143!2d37.61185861607757!3d55.752023880552464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a02bacc060f%3A0x708835d0312f3990!2z0J7Qs9C40L3QsNC30YHQtdC60LA!5e0!3m2!1sru!2sru!4v1695448570973!5m2!1sru!2sru"
+            width="160"
+            height="160"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </a>
+      </div>
+      <div class="footer-column">
+        <h3>Контакты</h3>
+        <ul>
+          <li><strong>Адрес</strong></li>
+          <li>г. Москва, ул. Тверская, д. 15</li>
+          <li><strong>Телефон</strong></li>
+          <li>+7 (495) 123-45-67</li>
+          <li><strong>Email</strong></li>
+          <li>info@luxurystyle.ru</li>
+          <li><strong>Режим работы</strong></li>
+          <li>Пн-Вс: 10:00 - 22:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">LUXURYSTYLE. Все права защищены.</div>
+  </footer>
+  <script>
+  document.getElementById('about-btn').addEventListener('click', () => {
+    document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Личный кабинет</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+  
+/* Сброс и общие настройки */
+
+
+/* Адаптация для 1024px */
+@media (max-width: 1024px) {
+  header {
+    padding: 10px 18px;
+    height: auto;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .search {
+    width: 200px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  nav {
+    gap: 18px;
+    padding: 0 12px;
+  }
+
+  .profile-img {
+    width: 180px;
+    height: 180px;
+    margin-top: 70px;
+    border-width: 2px;
+  }
+
+  .profile-name {
+    font-size: 26px;
+    margin-top: 22px;
+  }
+
+  ul.options li {
+    font-size: 18px;
+    padding: 18px 20px;
+  }
+
+  .badge {
+    min-width: 20px;
+    height: 20px;
+    font-size: 11px;
+    line-height: 20px;
+  }
+
+  #phoneInput {
+    width: 140px;
+    font-size: 15px;
+    padding-left: 20px;
+  }
+}
+
+/* Адаптация для 600px */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .search {
+    width: 160px;
+    font-size: 13px;
+  }
+
+  .logo {
+    font-size: 14px;
+  }
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    margin-top: 40px;
+    border-width: 2px;
+  }
+
+  .profile-name {
+    font-size: 22px;
+    margin-top: 18px;
+  }
+
+  hr {
+    margin: 60px 0 0;
+  }
+
+  ul.options {
+    margin-top: 10px;
+  }
+
+  ul.options li {
+    flex-direction: row;
+    font-size: 17px;
+    padding: 14px 16px;
+  }
+
+  .badge {
+    min-width: 18px;
+    height: 18px;
+    font-size: 10px;
+    line-height: 18px;
+  }
+
+  .phone-wrapper {
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  #phoneInput {
+    width: 120px;
+    font-size: 14px;
+    padding-left: 18px;
+  }
+}
+
+/* Адаптация для 400px */
+@media (max-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 13px;
+  }
+
+  .logo-box {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .search {
+    width: 120px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  nav button {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  .profile-img {
+    width: 120px;
+    height: 120px;
+    margin-top: 30px;
+    border-width: 2px;
+  }
+
+  .profile-name {
+    font-size: 18px;
+    margin-top: 14px;
+  }
+
+  hr {
+    margin: 40px 0 0;
+  }
+
+  ul.options li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 16px;
+    padding: 12px 12px;
+  }
+
+  .badge {
+    min-width: 16px;
+    height: 16px;
+    font-size: 9px;
+    line-height: 16px;
+  }
+
+  .phone-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  #phoneInput {
+    width: 100%;
+    font-size: 14px;
+    padding-left: 16px;
+  }
+}
+
+body {
+  margin: 0;                      /* Убирает отступы вокруг страницы */
+  background-color: #1a1a1a;      /* Темный фон всей страницы */
+  font-family: 'Inter', sans-serif; /* Основной шрифт для текста */
+  color: #fff;                   /* Белый цвет текста по умолчанию */
+}
+
+
+
+/* Логотип в хедере */
+header {
+    background: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    height: 32px;
+   
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    gap: 8px;
+  }
+    
+
+.logo-box {
+ width: 32px;
+ height: 32px;
+ background: linear-gradient(to bottom, #797979, #cccccc);
+ color: #111;
+ font-weight: 700;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-right: 8px;
+ border-radius: 2px;
+ user-select: none;
+}
+nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      justify-content: flex-end;
+      padding: 0 20px;
+      width: 100%;
+    }
+nav button {
+      background: transparent;
+      border: none;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 6px 12px;
+      transition: color 0.3s, transform 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+nav button:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+/* Контейнер поискового поля в хедере */
+ /* Поиск */
+    .search {
+        background: #222;
+      border: none;
+      border-radius: 8px;
+      color: #888;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 6px 14px;
+      width: 235px;
+    }
+.search::placeholder {
+    color: #555;
+  }
+
+/* Основной контейнер контента профиля */
+main {
+  max-width: 1800px;             /* Максимальная ширина */
+  margin: 30px auto;            /* Центрирование и отступы сверху/снизу */
+  padding: 0 15px;              /* Отступы слева и справа */
+}
+
+/* Круг аватара */
+
+.profile-img {
+  width: 215px;
+  height: 215px;
+  background-image: url('https://i.pinimg.com/originals/6e/0c/dd/6e0cddbba108efe4d3e471bfde060604.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 90px;
+  position: relative;
+  border: 3px solid #b3b3b3;
+}
+
+
+/* Имя пользователя под аватаром */
+.profile-name {
+  margin-top: 30px;            /* Отступ сверху */
+  font-weight: 700;            /* Жирное начертание */
+  font-size: 30px;             /* Размер текста */
+  text-align: center;          /* Выравнивание по центру */
+}
+
+/* Горизонтальная линия-разделитель */
+hr {
+  border: none;                /* Убирает стандартную рамку */
+  border-top: 1.5px solid #A9A9A9;  /* Тонкая серая линия сверху */
+  margin: 100px 0 0px;         /* Отступы */
+}
+
+/* Список пунктов меню */
+ul.options {
+  list-style: none;            /* Убирает маркеры списка */
+  padding: 0;
+  margin: 0;
+}
+/* Каждый пункт меню */
+ul.options li {
+  display: flex;               /* Горизонтальное расположение названия и счетчика */
+  justify-content: space-between; /* Название слева, счетчик справа */
+  align-items: center;         /* Вертикальное центрирование */
+  padding: 12px 25px;             /* Отступы сверху и снизу */
+  border-bottom: 1.5px solid #A9A9A9; /* Разделитель между пунктами */
+  cursor: pointer;             /* Курсор pointer при наведении */
+  font-weight: 700;            /* Жирность текста */
+  font-size: 20px;             /* Размер текста */
+  color: #fff;                 /* Белый цвет */
+  transition: color 0.3s ease;
+  padding-top: 23px ;
+  padding-bottom: 23px; /* Плавное изменение цвета при наведении */
+}
+ul.options li:hover {
+  color: #bbb;                 /* Цвет при наведении */
+}
+
+/* Красный круг с цифрой — счетчик */
+.badge {
+  background-color: #b6281f;  /* Красный фон */
+   color: #fff;                /* Белый текст */
+  font-weight: 700;           /* Жирность */
+  font-size: 12px;            /* Размер шрифта */
+  min-width: 22px;            /* Минимальная ширина кружка */
+  height: 22px;               /* Высота и ширина равны для круга */
+  line-height: 22px;          /* Вертикальное выравнивание текста */
+  border-radius: 50%;         /* Круглая форма */
+  text-align: center;         /* Выравнивание цифры по центру */
+  user-select: none;          /* Запрет выделения текста */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Плавное изменение */
+}
+
+/* Контейнер и стили для строки с телефоном */
+.phone-wrapper {
+  display: flex;               /* Горизонтальное расположение элементов (текст + поле) */
+  align-items: center;         /* Вертикальное выравнивание */
+  gap: 10px;                   /* Расстояние между текстом и полем */
+  font-weight: 400;            /* Обычный вес шрифта */
+  font-size: 14px;             /* Размер шрифта */
+  color: #777;                 /* Более светлый оттенок серого */
+}
+
+/* Поле ввода телефона рядом с надписью (без белого фона) */
+#phoneInput {
+  background: transparent !important; /* Прозрачный фон, перекрывает другие стили */
+  border: none !important;             /* Без рамок */
+  color: #fff !important;              /* Белый текст */
+  font-weight: 600 !important;         /* Жирное начертание */
+  font-size: 16px !important;          /* Размер шрифта */
+  width: 150px;                        /* Фиксированная ширина */
+  max-width: 100%;                    /* Чтобы не выходил за пределы при малых размерах */
+  padding-left: 25px; 
+  padding-top: 5px;                        /* Без внутренних отступов */
+  margin: 0;                         /* Без внешних отступов */
+  outline: none;                     /* Без обводки при фокусе */
+  cursor: text;                      /* Курсор «текстовый» */
+  border-bottom: 1px solid transparent; /* Для анимации подчеркивания */
+}
+
+/* Плейсхолдер поля телефона */
+#phoneInput::placeholder {
+  color: #777;                      /* Светло-серый цвет подсказки */
+}
+
+/* При фокусе подчеркивание становится белым */
+#phoneInput:focus {
+  border-bottom: 1px solid #fff;
+}
+</style>
+</head>
+<body>
+    
+<header>
+  <div class="logo">
+    <div class="logo-box">LS</div>
+    LUXURYSTYLE
+  </div>
+  <nav>
+    <button id="glavnay" onclick="location.href='главная.html'">Главная</button>
+    <button id="cart-btn" onclick="location.href='корзина.html'">Корзина</button>
+    <input class="search" type="search" placeholder="Поиск товаров..." aria-label="Поиск товаров" />  
+  </nav>
+</header>
+<main>
+  <div class="profile-img" aria-label="Аватар пользователя"></div>
+  <div class="profile-name">Соня Чокопай</div>
+  <hr />
+  <ul class="options" aria-label="Меню пользователя">
+    <li id="cartOption" onclick="location.href='корзина.html'">Корзина <span class="badge" id="cartCount">3</span></li>
+    <li id="deliveryOption">Доставки <span class="badge" id="deliveryCount">1</span></li>
+    <li id="phoneOption" style="justify-content:flex-start;gap:12px;">
+      <span>Телефон</span>
+      <input id="phoneInput" type="text" placeholder="не обязательно" pattern="^\+\d\(\d{3,4}\)-\d{2}-\d{2}$" title="+х(хххх)-хх-хх" />
+    </li>
+    <li id="logoutOption">Выйти</li>
+  </ul>
+</main>
+
+<script>
+
+  // Ввод номера телефона с удобным форматированием ( +х(ххх)-хх-хх )
+  const phoneInput = document.getElementById('phoneInput');
+  phoneInput.addEventListener('input', (e) => {
+    let val = e.target.value.replace(/[^\d+]/g, '');
+
+    if (!val.startsWith('+')) val = '+' + val.replace(/\+/g, '');
+
+    // Убрано сложное форматирование, можно дополнить по желанию
+
+    e.target.value = val;
+  });
+</script>
+</body>
+</html>
